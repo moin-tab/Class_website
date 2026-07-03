@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>國立臺中第一高級中學｜班級網頁</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-primary:#002D62;
+    --color-primary-light:#0B4B96;
+    --color-accent:#F4A261;
+    --color-accent-dark:#D98442;
+    --color-bg:#F8F9FA;
+    --color-card:#FFFFFF;
+    --color-text:#333333;
+    --color-text-soft:#6B7280;
+    --color-border:#E3E7EC;
+    --color-gold:#C9A15A;
+    --font-display:'Noto Serif TC', serif;
+    --font-body:'Noto Sans TC', sans-serif;
+    --radius:10px;
+    --shadow-card:0 2px 10px rgba(0,45,98,0.08);
+    --shadow-hover:0 8px 24px rgba(0,45,98,0.14);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--color-bg);
+    color:var(--color-text);
+    font-family:var(--font-body);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:var(--font-display); margin:0; color:var(--color-primary);}
+  a{color:inherit;}
+  ul{margin:0;padding:0;list-style:none;}
+  button{font-family:var(--font-body); cursor:pointer;}
+  .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+
+  /* ---------- Header ---------- */
+  .site-header{
+    background:linear-gradient(135deg, var(--color-primary) 0%, #001B3D 100%);
+    color:#fff;
+    padding:28px clamp(16px, 4vw, 48px);
+    position:relative;
+    overflow:hidden;
+  }
+  .site-header::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image: radial-gradient(circle at 85% 20%, rgba(244,162,97,0.16), transparent 45%);
+    pointer-events:none;
+  }
+  .header-inner{
+    max-width:1200px;
+    margin:0 auto;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:stretch;
+    gap:24px;
+    position:relative;
+    z-index:1;
+  }
+  .header-left{flex:1 1 380px; min-width:280px;}
+  .school-name{
+    font-size:clamp(1.5rem, 2.4vw, 1.9rem);
+    font-weight:900;
+    color:#fff;
+    letter-spacing:0.04em;
+  }
+  .class-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:6px;
+  }
+  .class-title h2{
+    font-size:clamp(1.1rem, 2vw, 1.35rem);
+    color:var(--color-accent);
+    font-weight:700;
+    letter-spacing:0.02em;
+  }
+  .honor-badge{
+    display:inline-flex; align-items:center; gap:4px;
+    font-size:0.72rem;
+    padding:2px 10px;
+    border:1px solid rgba(244,162,97,0.5);
+    border-radius:99px;
+    color:var(--color-accent);
+    font-family:var(--font-body);
+  }
+  .memorial-tablet{
+    margin-top:18px;
+    padding:14px 18px;
+    border-left:3px solid var(--color-gold);
+    background:rgba(255,255,255,0.05);
+    border-radius:0 6px 6px 0;
+    max-width:560px;
+  }
+  .memorial-tablet p{
+    margin:0;
+    font-family:var(--font-display);
+    font-size:0.92rem;
+    line-height:2;
+    color:rgba(255,255,255,0.82);
+    letter-spacing:0.03em;
+  }
+  .memorial-tablet .cite{
+    display:block;
+    margin-top:6px;
+    font-size:0.72rem;
+    color:rgba(244,162,97,0.85);
+    font-family:var(--font-body);
+    letter-spacing:0.12em;
+  }
+
+  /* Countdown "honor plaque" */
+  .header-right{
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+  }
+  .countdown-plaque{
+    position:relative;
+    background:linear-gradient(160deg, #ffffff 0%, #f3f5f8 100%);
+    color:var(--color-primary);
+    border-radius:14px;
+    padding:18px 28px;
+    min-width:220px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
+    border:1px solid rgba(255,255,255,0.6);
+  }
+  .countdown-plaque::before{
+    content:"";
+    position:absolute;
+    top:-8px; left:50%; transform:translateX(-50%);
+    width:36px; height:16px;
+    background:var(--color-accent);
+    clip-path:polygon(0 0,100% 0,80% 100%,20% 100%);
+  }
+  .countdown-label{
+    font-size:0.72rem;
+    letter-spacing:0.15em;
+    color:var(--color-text-soft);
+    text-transform:uppercase;
+  }
+  .countdown-exam-name{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1.02rem;
+    margin-top:4px;
+    color:var(--color-primary);
+  }
+  .countdown-days{
+    font-family:var(--font-display);
+    font-weight:900;
+    font-size:2.4rem;
+    line-height:1.1;
+    margin-top:4px;
+    color:var(--color-accent-dark);
+  }
+  .countdown-days small{font-size:0.9rem; font-weight:700; margin-left:2px; color:var(--color-text-soft);}
+
+  /* ---------- Layout ---------- */
+  .container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:32px clamp(16px, 4vw, 48px) 64px;
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:28px;
+    align-items:start;
+  }
+  @media (max-width:860px){
+    .container{grid-template-columns:1fr;}
+  }
+
+  .card{
+    background:var(--color-card);
+    border:1px solid var(--color-border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-card);
+    padding:22px 24px;
+    margin-bottom:24px;
+    transition:box-shadow .2s ease;
+  }
+  .card:hover{box-shadow:var(--shadow-hover);}
+  .card h3{
+    font-size:1.15rem;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding-bottom:12px;
+    border-bottom:2px solid var(--color-bg);
+    margin-bottom:14px;
+  }
+
+  /* Announcement list */
+  #announcement-list li{
+    padding:10px 0;
+    border-bottom:1px dashed var(--color-border);
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+  }
+  #announcement-list li:last-child{border-bottom:none;}
+  .tag-new{
+    flex:0 0 auto;
+    background:var(--color-accent);
+    color:#fff;
+    font-size:0.68rem;
+    padding:2px 8px;
+    border-radius:99px;
+    font-weight:700;
+    letter-spacing:0.05em;
+  }
+  .item-date{
+    flex:0 0 auto;
+    font-size:0.78rem;
+    color:var(--color-text-soft);
+    font-variant-numeric:tabular-nums;
+  }
+  .item-text{flex:1 1 auto; word-break:break-word;}
+
+  /* Homework external link card */
+  .homework-desc{
+    font-size:0.88rem;
+    color:var(--color-text-soft);
+    margin:0 0 14px;
+  }
+  .homework-link-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--color-primary);
+    color:#fff !important;
+    text-decoration:none;
+    font-weight:700;
+    font-size:0.92rem;
+    padding:10px 20px;
+    border-radius:8px;
+    transition:background .15s ease;
+  }
+  .homework-link-btn::before{content:"🔗";}
+  .homework-link-btn:hover{background:var(--color-primary-light);}
+  .homework-link-btn.is-disabled{
+    background:var(--color-bg);
+    color:var(--color-text-soft) !important;
+    pointer-events:none;
+  }
+  .homework-link-btn.is-disabled::before{content:"⏳";}
+
+  /* Tabs */
+  .tab-bar{display:flex; gap:6px; margin-bottom:16px; flex-wrap:wrap;}
+  .tab-btn{
+    background:var(--color-bg);
+    border:1px solid var(--color-border);
+    color:var(--color-text-soft);
+    padding:8px 16px;
+    border-radius:99px;
+    font-size:0.88rem;
+    font-weight:700;
+    transition:all .15s ease;
+  }
+  .tab-btn.active{
+    background:var(--color-primary);
+    border-color:var(--color-primary);
+    color:#fff;
+  }
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block; animation:fadeIn .35s ease;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+
+  .cadre-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(110px,1fr)); gap:14px;}
+  .cadre-item{text-align:center;}
+  .cadre-avatar{
+    width:56px; height:56px; border-radius:50%;
+    background:var(--color-primary);
+    color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-weight:700; font-size:1.1rem;
+    margin:0 auto 8px;
+  }
+  .cadre-role{font-size:0.72rem; color:var(--color-accent-dark); font-weight:700;}
+  .cadre-name{font-size:0.9rem; font-weight:700;}
+
+  #honor-list li{
+    display:flex; gap:10px; align-items:flex-start;
+    padding:10px 0; border-bottom:1px dashed var(--color-border);
+  }
+  #honor-list li:last-child{border-bottom:none;}
+  #honor-list li::before{content:"🏅"; flex:0 0 auto;}
+
+  .photo-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(120px,1fr)); gap:10px;}
+  .photo-grid figure{margin:0; border-radius:8px; overflow:hidden; background:var(--color-bg);}
+  .photo-grid img{width:100%; height:90px; object-fit:cover; display:block;}
+  .photo-grid figcaption{font-size:0.72rem; text-align:center; padding:4px; color:var(--color-text-soft);}
+
+  /* Vote announcement / message board */
+  #vote-announce-list li{
+    display:flex; gap:10px; align-items:flex-start;
+    padding:10px 0; border-bottom:1px dashed var(--color-border);
+  }
+  #vote-announce-list li:last-child{border-bottom:none;}
+  #vote-announce-list li::before{content:"🗳️"; flex:0 0 auto;}
+
+  /* Right column: exam table + birthdays */
+  #exam-table-list li{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:10px 0; border-bottom:1px dashed var(--color-border); font-size:0.9rem;
+  }
+  #exam-table-list li:last-child{border-bottom:none;}
+  .exam-days-pill{
+    font-size:0.72rem; font-weight:700;
+    padding:2px 9px; border-radius:99px;
+    background:var(--color-bg); color:var(--color-primary);
+    white-space:nowrap;
+  }
+  .exam-days-pill.today{background:var(--color-accent); color:#fff;}
+  .exam-days-pill.done{background:#eee; color:#aaa;}
+
+  .schedule-placeholder{
+    font-size:0.88rem;
+    color:var(--color-text-soft);
+    text-align:center;
+    padding:20px 10px;
+    background:var(--color-bg);
+    border-radius:8px;
+  }
+  .schedule-image{
+    width:100%;
+    display:block;
+    border-radius:8px;
+    border:1px solid var(--color-border);
+  }
+
+  .birthday-card{
+    background:linear-gradient(135deg, #fff 0%, #fff8f0 100%);
+  }
+  .birthday-empty{color:var(--color-text-soft); font-size:0.88rem; text-align:center; padding:12px 0;}
+  .birthday-item{display:flex; align-items:center; gap:10px; padding:8px 0;}
+  .birthday-item .bd-icon{font-size:1.3rem;}
+
+  /* ---------- Footer ---------- */
+  .site-footer{
+    background:var(--color-primary);
+    color:rgba(255,255,255,0.75);
+    text-align:center;
+    padding:28px 16px 60px;
+    font-size:0.82rem;
+    position:relative;
+  }
+  .maintenance-btn{
+    position:fixed;
+    right:18px; bottom:18px;
+    width:42px; height:42px;
+    border-radius:50%;
+    background:rgba(0,45,98,0.35);
+    border:1px solid rgba(255,255,255,0.25);
+    color:rgba(255,255,255,0.55);
+    font-size:1rem;
+    display:flex; align-items:center; justify-content:center;
+    transition:all .2s ease;
+    z-index:50;
+  }
+  .maintenance-btn:hover{
+    background:var(--color-accent);
+    color:#fff;
+    border-color:var(--color-accent);
+  }
+
+  /* ---------- Admin Panel ---------- */
+  #admin-panel{
+    display:none;
+    max-width:1200px;
+    margin:0 auto 60px;
+    padding:0 clamp(16px,4vw,48px);
+  }
+  .admin-shell{
+    background:#fff;
+    border:2px solid var(--color-primary);
+    border-radius:14px;
+    padding:26px 28px 32px;
+    box-shadow:0 12px 34px rgba(0,45,98,0.18);
+  }
+  .admin-shell h2{
+    display:flex; align-items:center; justify-content:space-between;
+    font-size:1.25rem;
+    padding-bottom:14px;
+    border-bottom:2px solid var(--color-bg);
+    margin-bottom:20px;
+  }
+  .admin-shell h2 .version-tag{
+    font-family:var(--font-body); font-size:0.75rem;
+    background:var(--color-accent); color:#fff;
+    padding:3px 10px; border-radius:99px;
+  }
+  .admin-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:20px;}
+  .admin-block{
+    background:var(--color-bg);
+    border-radius:10px;
+    padding:16px 18px;
+  }
+  .admin-block h4{font-size:0.95rem; margin-bottom:10px; display:flex; align-items:center; gap:6px;}
+  .admin-block label{display:block; font-size:0.78rem; color:var(--color-text-soft); margin:8px 0 4px;}
+  .admin-block input[type=text], .admin-block input[type=date], .admin-block input[type=number], .admin-block textarea{
+    width:100%; padding:8px 10px; border:1px solid var(--color-border); border-radius:6px;
+    font-family:var(--font-body); font-size:0.88rem; background:#fff;
+  }
+  .admin-block textarea{resize:vertical; min-height:70px;}
+  .admin-actions{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;}
+  .btn-primary, .btn-save{
+    background:var(--color-primary); color:#fff; border:none;
+    padding:8px 16px; border-radius:6px; font-size:0.84rem; font-weight:700;
+  }
+  .btn-save{background:var(--color-accent);}
+  .btn-primary:hover{background:var(--color-primary-light);}
+  .btn-save:hover{background:var(--color-accent-dark);}
+  .admin-mini-list{margin-top:10px; max-height:150px; overflow-y:auto;}
+  .admin-mini-list li{
+    display:flex; justify-content:space-between; align-items:center; gap:8px;
+    background:#fff; border:1px solid var(--color-border); border-radius:6px;
+    padding:6px 10px; font-size:0.8rem; margin-bottom:6px;
+  }
+  .admin-mini-list li span{flex:1 1 auto; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .del-btn{
+    flex:0 0 auto; background:none; border:none; color:#d33; font-size:0.8rem; font-weight:700;
+  }
+  .del-btn:hover{text-decoration:underline;}
+
+  #export-block{margin-top:24px;}
+  #code-output{
+    display:none;
+    width:100%; min-height:220px;
+    font-family:'Courier New', monospace; font-size:0.78rem;
+    padding:14px; border:1px solid var(--color-border); border-radius:8px;
+    background:#0d1117; color:#c9d1d9;
+    margin-top:12px;
+    white-space:pre;
+  }
+  .export-hint{font-size:0.78rem; color:var(--color-text-soft); margin-top:6px;}
+</style>
+</head>
+<body>
+
+<!-- =============== HEADER =============== -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="school-name">國立臺中第一高級中學</div>
+      <div class="class-title">
+        <h2 id="class-title-text">115學年度 高一 尚未分班 班網</h2>
+        <span class="honor-badge">誠．樸．勇．毅</span>
+      </div>
+      <div class="memorial-tablet">
+        <p>維本校肇建之初，篤志樹人，以誠立身，以樸養氣，以勇任事，以毅致遠。莘莘學子，承此校訓，勤學不倦，日新又新，期能致知力行，兼善天下。</p>
+        <span class="cite">－ 創校紀念碑文（節錄）</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="countdown-plaque">
+        <div class="countdown-label">距離下一場大考</div>
+        <div class="countdown-exam-name" id="header-exam-name">尚無資料</div>
+        <div class="countdown-days" id="header-exam-days">－</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- =============== MAIN CONTAINER =============== -->
+<div class="container">
+
+  <!-- ===== LEFT COLUMN ===== -->
+  <div class="col-left">
+
+    <!-- 班級最新公告 -->
+    <section class="card">
+      <h3>📌 班級最新公告</h3>
+      <!-- DATA_ANNOUNCEMENT_START -->
+      <ul id="announcement-list">
+        <li><span class="tag-new">NEW</span><span class="item-date">2026/07/03</span><span class="item-text">班級網頁正式上線，歡迎各位同學使用維護模式更新資料。</span></li>
+        <li><span class="tag-new">NEW</span><span class="item-date">2026/07/01</span><span class="item-text">暑期輔導課程表將於分班後另行公告，請留意班級群組通知。</span></li>
+      </ul>
+      <!-- DATA_ANNOUNCEMENT_END -->
+    </section>
+
+    <!-- 今日聯絡簿與作業 -->
+    <section class="card">
+      <h3>📅 今日聯絡簿與作業</h3>
+      <!-- DATA_HOMEWORK_START -->
+      <div id="homework-link-block">
+        <p class="homework-desc">每日作業與聯絡事項請至班級聯絡簿網站查看，內容由老師／班級幹部每日更新。</p>
+        <a href="https://app.notion.com/p/39274b96987a803fa5a1cd267027210d?v=c0074b96987a8306ad9e88eec4d7dd67&amp;source=copy_link" id="homework-link" class="homework-link-btn" target="_blank" rel="noopener">前往今日聯絡簿</a>
+      </div>
+      <!-- DATA_HOMEWORK_END -->
+    </section>
+
+    <!-- 班級生活與榮譽 -->
+    <section class="card">
+      <h3>🏫 班級生活與榮譽</h3>
+      <div class="tab-bar" role="tablist">
+        <button class="tab-btn active" data-tab="cadre">幹部名單</button>
+        <button class="tab-btn" data-tab="honor">榮譽榜</button>
+        <button class="tab-btn" data-tab="photos">班級相簿</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-cadre">
+        <!-- DATA_CADRE_START -->
+        <div class="cadre-grid" id="cadre-grid">
+          <div class="cadre-item"><div class="cadre-avatar">班</div><div class="cadre-role">班長</div><div class="cadre-name">尚未產生</div></div>
+          <div class="cadre-item"><div class="cadre-avatar">副</div><div class="cadre-role">副班長</div><div class="cadre-name">尚未產生</div></div>
+        </div>
+        <!-- DATA_CADRE_END -->
+      </div>
+
+      <div class="tab-panel" id="tab-honor">
+        <!-- DATA_HONOR_START -->
+        <ul id="honor-list">
+          <li><span class="item-date">2026/07/03</span><span class="item-text">尚無榮譽紀錄，請於維護模式新增班級或個人榮譽事蹟。</span></li>
+        </ul>
+        <!-- DATA_HONOR_END -->
+      </div>
+
+      <div class="tab-panel" id="tab-photos">
+        <!-- DATA_PHOTOS_START -->
+        <div class="photo-grid" id="photo-grid">
+          <figure><img src="https://placehold.co/200x150/002D62/ffffff?text=一中" alt="校園示意圖"><figcaption>校園一隅</figcaption></figure>
+        </div>
+        <!-- DATA_PHOTOS_END -->
+      </div>
+    </section>
+
+    <!-- 班會專區 -->
+    <section class="card">
+      <h3>💬 班會專區</h3>
+      <div class="tab-bar" role="tablist">
+        <button class="tab-btn active" data-tab2="vote">投票公告</button>
+        <button class="tab-btn" data-tab2="board">留言板</button>
+      </div>
+
+      <div class="tab-panel active" id="tab2-vote">
+        <ul id="vote-announce-list"></ul>
+      </div>
+
+      <div class="tab-panel" id="tab2-board">
+        <p class="homework-desc">歡迎留言互動！請至班級留言板網站發表意見。</p>
+        <a href="https://padlet.com/9525wf/padlet-lj780t57k0wl40vg" id="message-link" class="homework-link-btn" target="_blank" rel="noopener">前往留言板</a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ===== RIGHT COLUMN ===== -->
+  <div class="col-right">
+
+    <section class="card">
+      <h3>📅 近期大考時程表</h3>
+      <ul id="exam-table-list"></ul>
+    </section>
+
+    <section class="card">
+      <h3>🗓️ 課表</h3>
+      <!-- DATA_SCHEDULE_START -->
+      <div id="schedule-image-block">
+        <p class="schedule-placeholder" id="schedule-placeholder">尚未上傳課表圖片，請於維護模式中設定圖片網址。</p>
+        <img id="schedule-image" class="schedule-image" src="" alt="班級課表" style="display:none;">
+      </div>
+      <!-- DATA_SCHEDULE_END -->
+    </section>
+
+    <section class="card birthday-card">
+      <h3>🎂 當月壽星</h3>
+      <div id="birthday-content"></div>
+    </section>
+
+  </div>
+
+</div>
+
+<!-- =============== FOOTER =============== -->
+<footer class="site-footer">
+  <p>© 2026 國立臺中第一高級中學 <span id="footer-class-text">115學年度 高一 尚未分班</span>．版權所有</p>
+</footer>
+<button type="button" class="maintenance-btn" onclick="enterMaintenanceMode()" title="進入維護模式">🔧</button>
+
+<!-- =============== ADMIN PANEL =============== -->
+<div id="admin-panel">
+  <div class="admin-shell">
+    <h2>後台管理面板 <span class="version-tag">🛠️ v2.0</span></h2>
+
+    <div class="admin-grid">
+
+      <!-- 班級資訊 -->
+      <div class="admin-block">
+        <h4>🏷️ 班級資訊</h4>
+        <label for="admin-class-number">班級數字（例：3 → 高一3班）</label>
+        <input type="text" id="admin-class-number" placeholder="例如：3">
+        <div class="admin-actions">
+          <button type="button" class="btn-save" onclick="saveClassNumber()">儲存班級資訊</button>
+        </div>
+      </div>
+
+      <!-- 今日聯絡簿 -->
+      <div class="admin-block">
+        <h4>📝 今日聯絡簿</h4>
+        <label for="admin-homework-url">聯絡簿外部網站網址（例如 Google 文件、Google 表單、班級社群貼文連結）</label>
+        <input type="text" id="admin-homework-url" placeholder="https://...">
+        <div class="admin-actions">
+          <button type="button" class="btn-save" onclick="saveHomeworkLink()">儲存連結並更新前台</button>
+        </div>
+      </div>
+
+      <!-- 留言板 -->
+      <div class="admin-block">
+        <h4>💬 留言板</h4>
+        <label for="admin-message-url">留言板外部網站網址（例如 Google 表單、社群社團連結）</label>
+        <input type="text" id="admin-message-url" placeholder="https://...">
+        <div class="admin-actions">
+          <button type="button" class="btn-save" onclick="saveMessageLink()">儲存連結並更新前台</button>
+        </div>
+      </div>
+
+      <!-- 課表圖片 -->
+      <div class="admin-block">
+        <h4>🗓️ 課表圖片</h4>
+        <label for="admin-schedule-url">課表圖片網址（可上傳至 Google 雲端硬碟／Imgur 等圖床後取得連結）</label>
+        <input type="text" id="admin-schedule-url" placeholder="https://...">
+        <div class="admin-actions">
+          <button type="button" class="btn-save" onclick="saveScheduleImage()">儲存圖片並更新前台</button>
+        </div>
+      </div>
+
+      <!-- 大考管理 -->
+      <div class="admin-block">
+        <h4>📚 大考管理</h4>
+        <label for="admin-exam-name">考試名稱</label>
+        <input type="text" id="admin-exam-name" placeholder="例如：期中考">
+        <label for="admin-exam-date">考試日期</label>
+        <input type="date" id="admin-exam-date">
+        <div class="admin-actions">
+          <button type="button" class="btn-primary" onclick="addExam()">新增大考</button>
+        </div>
+        <ul class="admin-mini-list" id="admin-exam-mini-list"></ul>
+      </div>
+
+      <!-- 最新公告管理 -->
+      <div class="admin-block">
+        <h4>📌 最新公告管理</h4>
+        <label for="admin-announcement-text">公告內容</label>
+        <input type="text" id="admin-announcement-text" placeholder="輸入公告內容">
+        <div class="admin-actions">
+          <button type="button" class="btn-primary" onclick="addAnnouncement()">新增公告</button>
+        </div>
+        <ul class="admin-mini-list" id="admin-announcement-mini-list"></ul>
+      </div>
+
+      <!-- 榮譽榜管理 -->
+      <div class="admin-block">
+        <h4>🏅 榮譽榜管理</h4>
+        <label for="admin-honor-text">榮譽事蹟</label>
+        <input type="text" id="admin-honor-text" placeholder="例如：榮獲校慶大隊接力冠軍">
+        <div class="admin-actions">
+          <button type="button" class="btn-primary" onclick="addHonor()">新增榮譽</button>
+        </div>
+        <ul class="admin-mini-list" id="admin-honor-mini-list"></ul>
+      </div>
+
+      <!-- 相簿管理 -->
+      <div class="admin-block">
+        <h4>📷 班級相簿管理</h4>
+        <label for="admin-photo-url">圖片網址（URL）</label>
+        <input type="text" id="admin-photo-url" placeholder="https://...">
+        <label for="admin-photo-caption">照片說明</label>
+        <input type="text" id="admin-photo-caption" placeholder="例如：校慶運動會">
+        <div class="admin-actions">
+          <button type="button" class="btn-primary" onclick="addPhoto()">新增照片</button>
+        </div>
+        <ul class="admin-mini-list" id="admin-photo-mini-list"></ul>
+      </div>
+
+      <!-- 幹部管理 -->
+      <div class="admin-block">
+        <h4>🧑‍🤝‍🧑 幹部名單管理</h4>
+        <label for="admin-cadre-role">職稱</label>
+        <input type="text" id="admin-cadre-role" placeholder="例如：學藝股長">
+        <label for="admin-cadre-name">姓名</label>
+        <input type="text" id="admin-cadre-name" placeholder="例如：王小明">
+        <div class="admin-actions">
+          <button type="button" class="btn-primary" onclick="addCadre()">新增幹部</button>
+        </div>
+        <ul class="admin-mini-list" id="admin-cadre-mini-list"></ul>
+      </div>
+
+      <!-- 班會投票公告管理 -->
+      <div class="admin-block">
+        <h4>🗳️ 班會投票公告管理</h4>
+        <label for="admin-vote-text">投票議題內容（僅公告，不在網頁上開放投票）</label>
+        <input type="text" id="admin-vote-text" placeholder="例如：即將舉行投票：園遊會攤位主題">
+        <div class="admin-actions">
+          <button type="button" class="btn-primary" onclick="addVoteAnnounce()">新增投票公告</button>
+        </div>
+        <ul class="admin-mini-list" id="admin-vote-mini-list"></ul>
+      </div>
+
+    </div>
+
+    <div id="export-block">
+      <div class="admin-actions">
+        <button type="button" class="btn-save" onclick="generateNewCode()">💾 產生最新網頁代碼</button>
+        <button type="button" class="btn-primary" onclick="document.getElementById('admin-panel').style.display='none'">收合面板</button>
+      </div>
+      <p class="export-hint">產生後將自動全選，複製後另存為 index.html 即可完成永久更新（本機端不會保留紀錄，請務必下載保存）。</p>
+      <textarea id="code-output" readonly></textarea>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   全域資料：大考陣列（唯一使用 JS 陣列 + 註解錨點包裹的資料）
+   ========================================================= */
+// DATA_EXAMS_START
+let EXAMS_ARRAY = [
+  { name: "暑期輔導總複習測驗", date: "2026-08-14" },
+  { name: "115學年度第一次段考", date: "2026-09-25" },
+  { name: "115學年度期中考", date: "2026-11-06" }
+];
+// DATA_EXAMS_END
+
+/* =========================================================
+   其餘資料：以 DOM 內容為準（HTML 註解錨點包裹）
+   下列陣列僅作為「執行期間」的記憶體資料，
+   實際渲染結果會直接寫入對應錨點內的 DOM 節點。
+   ========================================================= */
+let announcementData = [];
+let homeworkLinkURL = '';
+let cadreData = [];
+let honorData = [];
+let photoData = [];
+
+let voteAnnounceData = [
+  { date: "2026/07/10", text: "即將舉行投票：本學期班遊地點（谷關溫泉／彩虹眷村／高美濕地）" }
+];
+let messageLinkURL = '';
+let scheduleImageURL = '';
+const ADMIN_PASSWORD = "115tcfsh";
+
+/* =========================================================
+   初始化：讀取目前 DOM 中既有內容作為初始資料
+   ========================================================= */
+function initFromDOM(){
+  document.querySelectorAll('#announcement-list li').forEach(li=>{
+    announcementData.push({
+      date: li.querySelector('.item-date') ? li.querySelector('.item-date').textContent : '',
+      text: li.querySelector('.item-text') ? li.querySelector('.item-text').textContent : li.textContent
+    });
+  });
+  const existingLink = document.getElementById('homework-link');
+  if(existingLink && existingLink.getAttribute('href') && existingLink.getAttribute('href') !== '#'){
+    homeworkLinkURL = existingLink.getAttribute('href');
+  }
+  const existingMsgLink = document.getElementById('message-link');
+  if(existingMsgLink && existingMsgLink.getAttribute('href') && existingMsgLink.getAttribute('href') !== '#'){
+    messageLinkURL = existingMsgLink.getAttribute('href');
+  }
+  const existingScheduleImg = document.getElementById('schedule-image');
+  if(existingScheduleImg && existingScheduleImg.getAttribute('src')){
+    scheduleImageURL = existingScheduleImg.getAttribute('src');
+  }
+  document.querySelectorAll('#cadre-grid .cadre-item').forEach(item=>{
+    const role = item.querySelector('.cadre-role').textContent;
+    const name = item.querySelector('.cadre-name').textContent;
+    if(name !== '尚未產生') cadreData.push({role, name});
+  });
+  document.querySelectorAll('#honor-list li').forEach(li=>{
+    const dateEl = li.querySelector('.item-date');
+    const textEl = li.querySelector('.item-text');
+    if(textEl && !textEl.textContent.includes('尚無榮譽紀錄')){
+      honorData.push({ date: dateEl ? dateEl.textContent : '', text: textEl.textContent });
+    }
+  });
+  document.querySelectorAll('#photo-grid figure').forEach(fig=>{
+    photoData.push({
+      url: fig.querySelector('img').getAttribute('src'),
+      caption: fig.querySelector('figcaption').textContent
+    });
+  });
+}
+
+/* =========================================================
+   渲染函式
+   ========================================================= */
+function renderAnnouncements(){
+  const ul = document.getElementById('announcement-list');
+  if(announcementData.length === 0){
+    ul.innerHTML = '<li><span class="item-text">目前尚無公告。</span></li>';
+    return;
+  }
+  ul.innerHTML = announcementData.map((a,i)=>
+    `<li>${i < 2 ? '<span class="tag-new">NEW</span>' : ''}<span class="item-date">${a.date}</span><span class="item-text">${escapeHTML(a.text)}</span></li>`
+  ).join('');
+}
+
+function renderHomeworkLink(){
+  const linkEl = document.getElementById('homework-link');
+  if(!homeworkLinkURL){
+    linkEl.textContent = '尚未設定連結';
+    linkEl.href = '#';
+    linkEl.classList.add('is-disabled');
+    return;
+  }
+  linkEl.textContent = '前往今日聯絡簿';
+  linkEl.href = homeworkLinkURL;
+  linkEl.classList.remove('is-disabled');
+}
+
+function renderCadre(){
+  const grid = document.getElementById('cadre-grid');
+  if(cadreData.length === 0){
+    grid.innerHTML = `<div class="cadre-item"><div class="cadre-avatar">－</div><div class="cadre-role">尚未設定</div><div class="cadre-name">尚未產生</div></div>`;
+    return;
+  }
+  grid.innerHTML = cadreData.map(c =>
+    `<div class="cadre-item"><div class="cadre-avatar">${escapeHTML(c.name.charAt(0))}</div><div class="cadre-role">${escapeHTML(c.role)}</div><div class="cadre-name">${escapeHTML(c.name)}</div></div>`
+  ).join('');
+}
+
+function renderHonor(){
+  const ul = document.getElementById('honor-list');
+  if(honorData.length === 0){
+    ul.innerHTML = '<li><span class="item-text">尚無榮譽紀錄，請於維護模式新增班級或個人榮譽事蹟。</span></li>';
+    return;
+  }
+  ul.innerHTML = honorData.map(h =>
+    `<li><span class="item-date">${h.date}</span><span class="item-text">${escapeHTML(h.text)}</span></li>`
+  ).join('');
+}
+
+function renderPhotos(){
+  const grid = document.getElementById('photo-grid');
+  if(photoData.length === 0){
+    grid.innerHTML = `<p style="font-size:0.85rem;color:var(--color-text-soft);">尚無相片，請於維護模式新增。</p>`;
+    return;
+  }
+  grid.innerHTML = photoData.map(p =>
+    `<figure><img src="${escapeAttr(p.url)}" alt="${escapeAttr(p.caption)}"><figcaption>${escapeHTML(p.caption)}</figcaption></figure>`
+  ).join('');
+}
+
+function escapeHTML(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+function escapeAttr(str){
+  return String(str).replace(/"/g,'&quot;');
+}
+
+/* =========================================================
+   大考倒數 / 時程表
+   ========================================================= */
+function daysUntil(dateStr){
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const target = new Date(dateStr + 'T00:00:00');
+  const diff = Math.round((target - today) / 86400000);
+  return diff;
+}
+
+function renderExams(){
+  const sorted = [...EXAMS_ARRAY].sort((a,b) => new Date(a.date) - new Date(b.date));
+
+  // 右側完整清單
+  const listEl = document.getElementById('exam-table-list');
+  listEl.innerHTML = sorted.map(exam => {
+    const d = daysUntil(exam.date);
+    let pillClass = '', pillText = '';
+    if(d > 0){ pillText = `倒數 ${d} 天`; }
+    else if(d === 0){ pillText = '💥 就是今天！'; pillClass = 'today'; }
+    else { pillText = '已結束'; pillClass = 'done'; }
+    return `<li><span>${escapeHTML(exam.name)}<br><small style="color:var(--color-text-soft);">${exam.date}</small></span><span class="exam-days-pill ${pillClass}">${pillText}</span></li>`;
+  }).join('') || '<li><span class="item-text">尚無排定的大考。</span></li>';
+
+  // 頁首：抓取距今最近的「未來」大考
+  const upcoming = sorted.filter(exam => daysUntil(exam.date) >= 0);
+  const nameEl = document.getElementById('header-exam-name');
+  const daysEl = document.getElementById('header-exam-days');
+  if(upcoming.length === 0){
+    nameEl.textContent = '尚無排定的大考';
+    daysEl.innerHTML = '－';
+  } else {
+    const next = upcoming[0];
+    const d = daysUntil(next.date);
+    nameEl.textContent = next.name;
+    daysEl.innerHTML = d === 0 ? '💥 就是今天！' : `${d}<small>天</small>`;
+  }
+}
+
+/* =========================================================
+   Tabs
+   ========================================================= */
+document.querySelectorAll('[data-tab]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('[data-tab]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('#tab-cadre, #tab-honor, #tab-photos').forEach(p=>p.classList.remove('active'));
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+document.querySelectorAll('[data-tab2]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('[data-tab2]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('#tab2-vote, #tab2-board').forEach(p=>p.classList.remove('active'));
+    document.getElementById('tab2-' + btn.dataset.tab2).classList.add('active');
+  });
+});
+
+/* =========================================================
+   投票 / 留言板
+   ========================================================= */
+function renderVoteAnnounce(){
+  const ul = document.getElementById('vote-announce-list');
+  if(voteAnnounceData.length === 0){
+    ul.innerHTML = '<li><span class="item-text">目前沒有排定的投票議題。</span></li>';
+    return;
+  }
+  ul.innerHTML = voteAnnounceData.map(v =>
+    `<li><span class="item-date">${v.date}</span><span class="item-text">${escapeHTML(v.text)}</span></li>`
+  ).join('');
+}
+
+function renderMessageLink(){
+  const linkEl = document.getElementById('message-link');
+  if(!messageLinkURL){
+    linkEl.textContent = '尚未設定連結';
+    linkEl.href = '#';
+    linkEl.classList.add('is-disabled');
+    return;
+  }
+  linkEl.textContent = '前往留言板';
+  linkEl.href = messageLinkURL;
+  linkEl.classList.remove('is-disabled');
+}
+
+function renderScheduleImage(){
+  const imgEl = document.getElementById('schedule-image');
+  const placeholderEl = document.getElementById('schedule-placeholder');
+  if(!scheduleImageURL){
+    imgEl.style.display = 'none';
+    imgEl.src = '';
+    placeholderEl.style.display = 'block';
+    return;
+  }
+  imgEl.src = scheduleImageURL;
+  imgEl.style.display = 'block';
+  placeholderEl.style.display = 'none';
+}
+
+/* =========================================================
+   當月壽星（示範用，靜態資料，非管理面板管理範疇）
+   ========================================================= */
+const STUDENTS_BIRTHDAY = [
+  // { name: "王小明", month: 7, day: 15 }
+];
+function renderBirthdays(){
+  const wrap = document.getElementById('birthday-content');
+  const thisMonth = new Date().getMonth() + 1;
+  const list = STUDENTS_BIRTHDAY.filter(s => s.month === thisMonth);
+  if(list.length === 0){
+    wrap.innerHTML = `<p class="birthday-empty">${thisMonth} 月尚無登錄壽星資料 🎈</p>`;
+    return;
+  }
+  wrap.innerHTML = list.map(s =>
+    `<div class="birthday-item"><span class="bd-icon">🎂</span><span>${escapeHTML(s.name)}（${s.month}/${s.day}）</span></div>`
+  ).join('');
+}
+
+/* =========================================================
+   後台：登入
+   ========================================================= */
+function enterMaintenanceMode(){
+  const pwd = prompt('請輸入維護模式密碼：');
+  if(pwd === null) return;
+  if(pwd === ADMIN_PASSWORD){
+    document.getElementById('admin-panel').style.display = 'block';
+    document.getElementById('admin-panel').scrollIntoView({behavior:'smooth'});
+    refreshAdminMiniLists();
+    document.getElementById('admin-class-number').value = window.__classNumber || '';
+    document.getElementById('admin-homework-url').value = homeworkLinkURL;
+    document.getElementById('admin-message-url').value = messageLinkURL;
+    document.getElementById('admin-schedule-url').value = scheduleImageURL;
+  } else {
+    alert('密碼錯誤，請重新輸入。');
+  }
+}
+
+/* =========================================================
+   後台：班級資訊
+   ========================================================= */
+window.__classNumber = '';
+function saveClassNumber(){
+  const num = document.getElementById('admin-class-number').value.trim();
+  if(!num){ alert('請輸入班級數字'); return; }
+  window.__classNumber = num;
+  const newTitle = `115學年度 高一 ${num}班 班網`;
+  document.getElementById('class-title-text').textContent = newTitle;
+  document.getElementById('footer-class-text').textContent = `115學年度 高一 ${num}班`;
+  document.title = `國立臺中第一高級中學｜高一${num}班`;
+  alert('班級資訊已更新！');
+}
+
+/* =========================================================
+   後台：今日聯絡簿
+   ========================================================= */
+function saveHomeworkLink(){
+  const raw = document.getElementById('admin-homework-url').value.trim();
+  if(raw && !/^https?:\/\//i.test(raw)){
+    alert('請輸入完整網址（需以 http:// 或 https:// 開頭）');
+    return;
+  }
+  homeworkLinkURL = raw;
+  renderHomeworkLink();
+  alert('聯絡簿連結已更新！');
+}
+
+function saveMessageLink(){
+  const raw = document.getElementById('admin-message-url').value.trim();
+  if(raw && !/^https?:\/\//i.test(raw)){
+    alert('請輸入完整網址（需以 http:// 或 https:// 開頭）');
+    return;
+  }
+  messageLinkURL = raw;
+  renderMessageLink();
+  alert('留言板連結已更新！');
+}
+
+function saveScheduleImage(){
+  const raw = document.getElementById('admin-schedule-url').value.trim();
+  if(raw && !/^https?:\/\//i.test(raw)){
+    alert('請輸入完整網址（需以 http:// 或 https:// 開頭）');
+    return;
+  }
+  scheduleImageURL = raw;
+  renderScheduleImage();
+  alert('課表圖片已更新！');
+}
+
+/* =========================================================
+   後台：大考管理
+   ========================================================= */
+function addExam(){
+  const name = document.getElementById('admin-exam-name').value.trim();
+  const date = document.getElementById('admin-exam-date').value;
+  if(!name || !date){ alert('請完整輸入考試名稱與日期'); return; }
+  EXAMS_ARRAY.push({name, date});
+  document.getElementById('admin-exam-name').value = '';
+  document.getElementById('admin-exam-date').value = '';
+  renderExams();
+  refreshAdminMiniLists();
+}
+function deleteExam(index){
+  EXAMS_ARRAY.splice(index, 1);
+  renderExams();
+  refreshAdminMiniLists();
+}
+
+/* =========================================================
+   後台：公告管理
+   ========================================================= */
+function addAnnouncement(){
+  const text = document.getElementById('admin-announcement-text').value.trim();
+  if(!text) return;
+  const today = formatToday();
+  announcementData.unshift({date: today, text});
+  document.getElementById('admin-announcement-text').value = '';
+  renderAnnouncements();
+  refreshAdminMiniLists();
+}
+function deleteAnnouncement(index){
+  announcementData.splice(index, 1);
+  renderAnnouncements();
+  refreshAdminMiniLists();
+}
+
+/* =========================================================
+   後台：榮譽榜管理
+   ========================================================= */
+function addHonor(){
+  const text = document.getElementById('admin-honor-text').value.trim();
+  if(!text) return;
+  const today = formatToday();
+  honorData.unshift({date: today, text});
+  document.getElementById('admin-honor-text').value = '';
+  renderHonor();
+  refreshAdminMiniLists();
+}
+function deleteHonor(index){
+  honorData.splice(index, 1);
+  renderHonor();
+  refreshAdminMiniLists();
+}
+
+/* =========================================================
+   後台：相簿管理
+   ========================================================= */
+function addPhoto(){
+  const url = document.getElementById('admin-photo-url').value.trim();
+  const caption = document.getElementById('admin-photo-caption').value.trim() || '班級相片';
+  if(!url) return;
+  photoData.push({url, caption});
+  document.getElementById('admin-photo-url').value = '';
+  document.getElementById('admin-photo-caption').value = '';
+  renderPhotos();
+  refreshAdminMiniLists();
+}
+function deletePhoto(index){
+  photoData.splice(index, 1);
+  renderPhotos();
+  refreshAdminMiniLists();
+}
+
+/* =========================================================
+   後台：幹部管理
+   ========================================================= */
+function addCadre(){
+  const role = document.getElementById('admin-cadre-role').value.trim();
+  const name = document.getElementById('admin-cadre-name').value.trim();
+  if(!role || !name) return;
+  cadreData.push({role, name});
+  document.getElementById('admin-cadre-role').value = '';
+  document.getElementById('admin-cadre-name').value = '';
+  renderCadre();
+  refreshAdminMiniLists();
+}
+function deleteCadre(index){
+  cadreData.splice(index, 1);
+  renderCadre();
+  refreshAdminMiniLists();
+}
+
+/* =========================================================
+   後台：投票公告管理
+   ========================================================= */
+function addVoteAnnounce(){
+  const text = document.getElementById('admin-vote-text').value.trim();
+  if(!text) return;
+  const today = formatToday();
+  voteAnnounceData.unshift({date: today, text});
+  document.getElementById('admin-vote-text').value = '';
+  renderVoteAnnounce();
+  refreshAdminMiniLists();
+}
+function deleteVoteAnnounce(index){
+  voteAnnounceData.splice(index, 1);
+  renderVoteAnnounce();
+  refreshAdminMiniLists();
+}
+
+/* =========================================================
+   後台：即時清單刷新
+   ========================================================= */
+function refreshAdminMiniLists(){
+  const examSorted = [...EXAMS_ARRAY].map((e, originalIndex) => ({...e, originalIndex}))
+    .sort((a,b)=> new Date(a.date) - new Date(b.date));
+  document.getElementById('admin-exam-mini-list').innerHTML = examSorted.map(e =>
+    `<li><span>${escapeHTML(e.name)}（${e.date}）</span><button type="button" class="del-btn" onclick="deleteExam(${e.originalIndex})">❌ 刪除</button></li>`
+  ).join('') || '<li><span>尚無資料</span></li>';
+
+  document.getElementById('admin-announcement-mini-list').innerHTML = announcementData.map((a,i) =>
+    `<li><span>${escapeHTML(a.text)}</span><button type="button" class="del-btn" onclick="deleteAnnouncement(${i})">❌ 刪除</button></li>`
+  ).join('') || '<li><span>尚無資料</span></li>';
+
+  document.getElementById('admin-honor-mini-list').innerHTML = honorData.map((h,i) =>
+    `<li><span>${escapeHTML(h.text)}</span><button type="button" class="del-btn" onclick="deleteHonor(${i})">❌ 刪除</button></li>`
+  ).join('') || '<li><span>尚無資料</span></li>';
+
+  document.getElementById('admin-photo-mini-list').innerHTML = photoData.map((p,i) =>
+    `<li><span>${escapeHTML(p.caption)}</span><button type="button" class="del-btn" onclick="deletePhoto(${i})">❌ 刪除</button></li>`
+  ).join('') || '<li><span>尚無資料</span></li>';
+
+  document.getElementById('admin-cadre-mini-list').innerHTML = cadreData.map((c,i) =>
+    `<li><span>${escapeHTML(c.role)} - ${escapeHTML(c.name)}</span><button type="button" class="del-btn" onclick="deleteCadre(${i})">❌ 刪除</button></li>`
+  ).join('') || '<li><span>尚無資料</span></li>';
+
+  document.getElementById('admin-vote-mini-list').innerHTML = voteAnnounceData.map((v,i) =>
+    `<li><span>${escapeHTML(v.text)}</span><button type="button" class="del-btn" onclick="deleteVoteAnnounce(${i})">❌ 刪除</button></li>`
+  ).join('') || '<li><span>尚無資料</span></li>';
+}
+
+function formatToday(){
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}/${m}/${day}`;
+}
+
+/* =========================================================
+   核心：產生最新網頁代碼（防重複生成 Bug 核心邏輯）
+   ========================================================= */
+function generateNewCode(){
+  const panel = document.getElementById('admin-panel');
+
+  // 1. 先隱藏後台面板，確保匯出的原始碼前台預設為關閉狀態
+  panel.style.display = 'none';
+
+  // 2. 擷取當前完整 DOM（此時已包含所有畫面上已更新的公告／作業／幹部／榮譽／相簿內容）
+  let fullHTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+  // 3. 立即恢復後台面板顯示，不中斷管理者操作
+  panel.style.display = 'block';
+
+  // 4. 針對 JS 陣列（EXAMS_ARRAY）以精準捕獲組正規表達式做「唯一一次」取代，
+  //    避免因 script 標籤內文字不會隨變數變動而導致資料與畫面不同步。
+  const examsLiteral = 'let EXAMS_ARRAY = ' + JSON.stringify(EXAMS_ARRAY, null, 2) + ';';
+  fullHTML = fullHTML.replace(
+    /(\/\/ DATA_EXAMS_START)[\s\S]*?(\/\/ DATA_EXAMS_END)/,
+    (match, startTag, endTag) => `${startTag}\n${examsLiteral}\n${endTag}`
+  );
+
+  const outputEl = document.getElementById('code-output');
+  outputEl.style.display = 'block';
+  outputEl.value = fullHTML;
+  outputEl.select();
+}
+
+/* =========================================================
+   啟動
+   ========================================================= */
+initFromDOM();
+renderAnnouncements();
+renderHomeworkLink();
+renderCadre();
+renderHonor();
+renderPhotos();
+renderExams();
+renderVoteAnnounce();
+renderMessageLink();
+renderScheduleImage();
+renderBirthdays();
+</script>
+</body>
+</html>
