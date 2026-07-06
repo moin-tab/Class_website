@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>國立臺中第一高級中學｜班級網頁</title>
+<title>臺中市立臺中第一高級中等學校｜班級網頁</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -228,6 +228,96 @@
     font-variant-numeric:tabular-nums;
   }
   .item-text{flex:1 1 auto; word-break:break-word;}
+
+  .more-link-btn{
+    display:block;
+    margin:12px 0 0 auto;
+    background:none;
+    border:none;
+    color:var(--color-accent-dark);
+    font-weight:700;
+    font-size:0.85rem;
+    padding:4px 0;
+  }
+  .more-link-btn:hover{text-decoration:underline;}
+
+  /* Announcement full-page overlay */
+  #announcement-page{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:150;
+    background:var(--color-bg);
+    overflow-y:auto;
+  }
+  .fullpage-header{
+    position:sticky;
+    top:0;
+    background:var(--color-primary);
+    color:#fff;
+    padding:18px clamp(16px,4vw,48px);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    z-index:1;
+  }
+  .fullpage-header h2{color:#fff; font-size:1.2rem;}
+  .fullpage-close-btn{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.4);
+    color:#fff;
+    padding:8px 16px;
+    border-radius:99px;
+    font-size:0.85rem;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .fullpage-close-btn:hover{background:var(--color-accent); border-color:var(--color-accent);}
+  .fullpage-body{
+    max-width:800px;
+    margin:0 auto;
+    padding:28px clamp(16px,4vw,48px) 60px;
+  }
+  .announcement-search-input{
+    display:block;
+    width:100%;
+    padding:11px 16px;
+    margin-bottom:16px;
+    border:1px solid var(--color-border);
+    border-radius:99px;
+    font-family:var(--font-body);
+    font-size:0.9rem;
+    background:#fff;
+  }
+  .announcement-search-input:focus{
+    outline:none;
+    border-color:var(--color-primary);
+  }
+  .fullpage-body .card-like{
+    background:var(--color-card);
+    border:1px solid var(--color-border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-card);
+    padding:22px 24px;
+  }
+  #announcement-full-list li{
+    padding:12px 0;
+    border-bottom:1px dashed var(--color-border);
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    background:var(--color-card);
+    padding-left:18px; padding-right:18px;
+  }
+  #announcement-full-list li:first-child{border-radius:var(--radius) var(--radius) 0 0; padding-top:18px;}
+  #announcement-full-list li:last-child{border-bottom:none; border-radius:0 0 var(--radius) var(--radius); padding-bottom:18px;}
+  #announcement-full-list{
+    background:var(--color-card);
+    border:1px solid var(--color-border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-card);
+  }
 
   /* Homework external link card */
   .homework-desc{
@@ -454,7 +544,7 @@
 <header class="site-header">
   <div class="header-inner">
     <div class="header-left">
-      <div class="school-name">國立臺中第一高級中學</div>
+      <div class="school-name">臺中市立臺中第一高級中等學校</div>
       <div class="class-title">
         <h2 id="class-title-text">115學年度 高一 尚未分班 班網</h2>
         <span class="honor-badge">誠．樸．勇．毅</span>
@@ -483,12 +573,8 @@
     <!-- 班級最新公告 -->
     <section class="card">
       <h3>📌 班級最新公告</h3>
-      <!-- DATA_ANNOUNCEMENT_START -->
-      <ul id="announcement-list">
-        <li><span class="tag-new">NEW</span><span class="item-date">2026/07/03</span><span class="item-text">班級網頁正式上線，歡迎各位同學使用維護模式更新資料。</span></li>
-        <li><span class="tag-new">NEW</span><span class="item-date">2026/07/01</span><span class="item-text">暑期輔導課程表將於分班後另行公告，請留意班級群組通知。</span></li>
-      </ul>
-      <!-- DATA_ANNOUNCEMENT_END -->
+      <ul id="announcement-list"></ul>
+      <button type="button" id="announcement-more-btn" class="more-link-btn" onclick="openAnnouncementPage()" style="display:none;">查看全部公告（<span id="announcement-total-count">0</span> 則）→</button>
     </section>
 
     <!-- 今日聯絡簿與作業 -->
@@ -586,9 +672,31 @@
 
 <!-- =============== FOOTER =============== -->
 <footer class="site-footer">
-  <p>© 2026 國立臺中第一高級中學 <span id="footer-class-text">115學年度 高一 尚未分班</span>．版權所有</p>
+  <p>© 2026 臺中市立臺中第一高級中等學校 <span id="footer-class-text">115學年度 高一 尚未分班</span>．版權所有</p>
 </footer>
 <button type="button" class="maintenance-btn" onclick="enterMaintenanceMode()" title="進入維護模式">🔧</button>
+
+<!-- =============== 公告總覽（全頁） =============== -->
+<div id="announcement-page">
+  <div class="fullpage-header">
+    <h2>📌 全部公告（共 <span id="announcement-page-count">0</span> 則）</h2>
+    <button type="button" class="fullpage-close-btn" onclick="closeAnnouncementPage()">← 返回班網首頁</button>
+  </div>
+  <div class="fullpage-body">
+    <input type="text" id="announcement-search" class="announcement-search-input" placeholder="🔍 輸入關鍵字搜尋公告…" oninput="filterAnnouncementFullList()">
+    <!-- DATA_ANNOUNCEMENT_START -->
+    <ul id="announcement-full-list">
+      <li><span class="tag-new">NEW</span><span class="item-date">2026/07/03</span><span class="item-text">班級網頁正式上線，歡迎各位同學使用維護模式更新資料。</span></li>
+      <li><span class="tag-new">NEW</span><span class="item-date">2026/07/01</span><span class="item-text">暑期輔導課程表將於分班後另行公告，請留意班級群組通知。</span></li>
+      <li><span class="item-date">2026/06/28</span><span class="item-text">請同學於暑假期間留意學校官網公告，確認分班結果。</span></li>
+      <li><span class="item-date">2026/06/20</span><span class="item-text">畢業典禮圓滿結束，感謝所有師長與家長的參與。</span></li>
+      <li><span class="item-date">2026/06/15</span><span class="item-text">期末考成績將於下週公布，請至教務處系統查詢。</span></li>
+      <li><span class="item-date">2026/06/10</span><span class="item-text">暑期輔導課選課系統開放中，請儘早完成選課。</span></li>
+    </ul>
+    <!-- DATA_ANNOUNCEMENT_END -->
+    <p id="announcement-no-result" style="display:none; text-align:center; color:var(--color-text-soft); padding:20px;">沒有符合關鍵字的公告。</p>
+  </div>
+</div>
 
 <!-- =============== ADMIN PANEL =============== -->
 <div id="admin-panel">
@@ -741,6 +849,7 @@ let EXAMS_ARRAY = [
    實際渲染結果會直接寫入對應錨點內的 DOM 節點。
    ========================================================= */
 let announcementData = [];
+const ANNOUNCEMENT_PREVIEW_COUNT = 4;
 let homeworkLinkURL = '';
 let cadreData = [];
 let honorData = [];
@@ -757,7 +866,7 @@ const ADMIN_PASSWORD = "115tcfsh";
    初始化：讀取目前 DOM 中既有內容作為初始資料
    ========================================================= */
 function initFromDOM(){
-  document.querySelectorAll('#announcement-list li').forEach(li=>{
+  document.querySelectorAll('#announcement-full-list li').forEach(li=>{
     announcementData.push({
       date: li.querySelector('.item-date') ? li.querySelector('.item-date').textContent : '',
       text: li.querySelector('.item-text') ? li.querySelector('.item-text').textContent : li.textContent
@@ -799,14 +908,56 @@ function initFromDOM(){
    渲染函式
    ========================================================= */
 function renderAnnouncements(){
-  const ul = document.getElementById('announcement-list');
+  const previewUl = document.getElementById('announcement-list');
+  const fullUl = document.getElementById('announcement-full-list');
+  const moreBtn = document.getElementById('announcement-more-btn');
+  const countEl = document.getElementById('announcement-total-count');
+  const pageCountEl = document.getElementById('announcement-page-count');
+
+  pageCountEl.textContent = announcementData.length;
+
   if(announcementData.length === 0){
-    ul.innerHTML = '<li><span class="item-text">目前尚無公告。</span></li>';
+    previewUl.innerHTML = '<li><span class="item-text">目前尚無公告。</span></li>';
+    fullUl.innerHTML = '<li><span class="item-text">目前尚無公告。</span></li>';
+    moreBtn.style.display = 'none';
     return;
   }
-  ul.innerHTML = announcementData.map((a,i)=>
-    `<li>${i < 2 ? '<span class="tag-new">NEW</span>' : ''}<span class="item-date">${a.date}</span><span class="item-text">${escapeHTML(a.text)}</span></li>`
-  ).join('');
+
+  const renderItem = (a,i) =>
+    `<li>${i < 2 ? '<span class="tag-new">NEW</span>' : ''}<span class="item-date">${a.date}</span><span class="item-text">${escapeHTML(a.text)}</span></li>`;
+
+  previewUl.innerHTML = announcementData.slice(0, ANNOUNCEMENT_PREVIEW_COUNT).map(renderItem).join('');
+  fullUl.innerHTML = announcementData.map(renderItem).join('');
+
+  if(announcementData.length > ANNOUNCEMENT_PREVIEW_COUNT){
+    countEl.textContent = announcementData.length;
+    moreBtn.style.display = 'block';
+  } else {
+    moreBtn.style.display = 'none';
+  }
+}
+
+function filterAnnouncementFullList(){
+  const keyword = document.getElementById('announcement-search').value.trim().toLowerCase();
+  const items = document.querySelectorAll('#announcement-full-list li');
+  let visibleCount = 0;
+  items.forEach(li=>{
+    const match = li.textContent.toLowerCase().includes(keyword);
+    li.style.display = match ? '' : 'none';
+    if(match) visibleCount++;
+  });
+  document.getElementById('announcement-no-result').style.display = (visibleCount === 0) ? 'block' : 'none';
+  document.getElementById('announcement-full-list').style.display = (visibleCount === 0) ? 'none' : 'block';
+}
+
+function openAnnouncementPage(){
+  document.getElementById('announcement-page').style.display = 'block';
+  document.getElementById('announcement-page').scrollTop = 0;
+  document.getElementById('announcement-search').value = '';
+  filterAnnouncementFullList();
+}
+function closeAnnouncementPage(){
+  document.getElementById('announcement-page').style.display = 'none';
 }
 
 function renderHomeworkLink(){
@@ -1014,7 +1165,7 @@ function saveClassNumber(){
   const newTitle = `115學年度 高一 ${num}班 班網`;
   document.getElementById('class-title-text').textContent = newTitle;
   document.getElementById('footer-class-text').textContent = `115學年度 高一 ${num}班`;
-  document.title = `國立臺中第一高級中學｜高一${num}班`;
+  document.title = `臺中市立臺中第一高級中等學校｜高一${num}班`;
   alert('班級資訊已更新！');
 }
 
