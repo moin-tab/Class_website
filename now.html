@@ -640,7 +640,7 @@
     <!-- 班級最新公告 -->
     <section class="card">
       <h3>📌 班級最新公告</h3>
-      <ul id="announcement-list"><li><span class="item-text">目前尚無公告。</span></li></ul>
+      <ul id="announcement-list"><li><span class="tag-new">NEW</span><span class="item-date"></span><span class="item-text">目前尚無公告。</span></li></ul>
       <button type="button" id="announcement-more-btn" class="more-link-btn" onclick="openAnnouncementPage()" style="display: none;">查看全部公告（<span id="announcement-total-count">5</span> 則）→</button>
     </section>
 
@@ -721,8 +721,8 @@
       <h3>🗓️ 課表</h3>
       <!-- DATA_SCHEDULE_START -->
       <div id="schedule-image-block">
-        <p class="schedule-placeholder" id="schedule-placeholder" style="display: block;">尚未上傳課表圖片，請於維護模式中設定圖片網址。</p>
-        <img id="schedule-image" class="schedule-image" src="" alt="班級課表" style="display:none;">
+        <p class="schedule-placeholder" id="schedule-placeholder" style="display: none;">尚未上傳課表圖片，請於維護模式中設定圖片網址。</p>
+        <img id="schedule-image" class="schedule-image" src="https://moin-tab.github.io/Class_website_image/Gemini_Generated_Image_dird5pdird5pdird.jpeg" alt="班級課表" style="display: block;">
       </div>
       <!-- DATA_SCHEDULE_END -->
     </section>
@@ -745,13 +745,13 @@
 <!-- =============== 公告總覽（全頁） =============== -->
 <div id="announcement-page">
   <div class="fullpage-header">
-    <h2>📌 全部公告（共 <span id="announcement-page-count">0</span> 則）</h2>
+    <h2>📌 全部公告（共 <span id="announcement-page-count">1</span> 則）</h2>
     <button type="button" class="fullpage-close-btn" onclick="closeAnnouncementPage()">← 返回班網首頁</button>
   </div>
   <div class="fullpage-body">
     <input type="text" id="announcement-search" class="announcement-search-input" placeholder="🔍 輸入關鍵字搜尋公告…" oninput="filterAnnouncementFullList()">
     <!-- DATA_ANNOUNCEMENT_START -->
-    <ul id="announcement-full-list"><li><span class="item-text">目前尚無公告。</span></li></ul>
+    <ul id="announcement-full-list"><li><span class="tag-new">NEW</span><span class="item-date"></span><span class="item-text">目前尚無公告。</span></li></ul>
     <!-- DATA_ANNOUNCEMENT_END -->
     <p id="announcement-no-result" style="display:none; text-align:center; color:var(--color-text-soft); padding:20px;">沒有符合關鍵字的公告。</p>
   </div>
@@ -855,7 +855,7 @@
         <div class="admin-actions">
           <button type="button" class="btn-primary" onclick="addAnnouncement()">新增公告</button>
         </div>
-        <ul class="admin-mini-list" id="admin-announcement-mini-list"><li><span>尚無資料</span></li></ul>
+        <ul class="admin-mini-list" id="admin-announcement-mini-list"><li><span>目前尚無公告。</span><button type="button" class="del-btn" onclick="deleteAnnouncement(0)">❌ 刪除</button></li></ul>
       </div>
 
       <!-- 榮譽榜管理 -->
