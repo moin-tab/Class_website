@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
+<html lang="zh-Hant"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>臺中市立臺中第一高級中等學校｜班級網頁</title>
+<title>臺中市立臺中第一高級中等學校｜高一14班</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&amp;family=Noto+Sans+TC:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
 <style>
   :root{
     --color-primary:#002D62;
@@ -437,6 +436,24 @@
   .photo-grid figure{margin:0; border-radius:8px; overflow:hidden; background:var(--color-bg);}
   .photo-grid img{width:100%; height:90px; object-fit:cover; display:block;}
   .photo-grid figcaption{font-size:0.72rem; text-align:center; padding:4px; color:var(--color-text-soft);}
+  .links-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(140px,1fr)); gap:10px;}
+  .link-chip{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 14px;
+    background:var(--color-bg);
+    border:1px solid rgba(201,161,90,0.35);
+    border-radius:8px;
+    text-decoration:none;
+    color:var(--color-text);
+    font-size:0.85rem;
+    font-weight:600;
+    transition:background .15s, border-color .15s;
+  }
+  .link-chip:hover{background:rgba(244,162,97,0.12); border-color:var(--color-accent);}
+  .link-chip .link-icon{font-size:1.05rem; flex:0 0 auto;}
+  .link-chip .link-name{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
 
   /* Vote announcement / message board */
   #vote-announce-list li{
@@ -591,7 +608,7 @@
     <div class="header-left">
       <div class="school-name">臺中市立臺中第一高級中等學校</div>
       <div class="class-title">
-        <h2 id="class-title-text">115學年度 高一 尚未分班 班網</h2>
+        <h2 id="class-title-text">115學年度 高一 14班 班網</h2>
         <span class="honor-badge">公．誠．勤．樸</span>
       </div>
       <div class="memorial-tablet">
@@ -607,8 +624,8 @@
     <div class="header-right">
       <div class="countdown-plaque">
         <div class="countdown-label">距離下一場大考</div>
-        <div class="countdown-exam-name" id="header-exam-name">尚無資料</div>
-        <div class="countdown-days" id="header-exam-days">－</div>
+        <div class="countdown-exam-name" id="header-exam-name">第一次段考</div>
+        <div class="countdown-days" id="header-exam-days">36<small>天</small></div>
       </div>
     </div>
   </div>
@@ -623,8 +640,8 @@
     <!-- 班級最新公告 -->
     <section class="card">
       <h3>📌 班級最新公告</h3>
-      <ul id="announcement-list"></ul>
-      <button type="button" id="announcement-more-btn" class="more-link-btn" onclick="openAnnouncementPage()" style="display:none;">查看全部公告（<span id="announcement-total-count">0</span> 則）→</button>
+      <ul id="announcement-list"><li><span class="item-text">目前尚無公告。</span></li></ul>
+      <button type="button" id="announcement-more-btn" class="more-link-btn" onclick="openAnnouncementPage()" style="display: none;">查看全部公告（<span id="announcement-total-count">5</span> 則）→</button>
     </section>
 
     <!-- 今日聯絡簿與作業 -->
@@ -638,6 +655,12 @@
       <!-- DATA_HOMEWORK_END -->
     </section>
 
+    <!-- 常用連結 -->
+    <section class="card">
+      <h3>🔗 常用連結</h3>
+      <div class="links-grid" id="links-grid"><a class="link-chip" href="https://tcfsh.tc.edu.tw/p/412-1076-19299.php" target="_blank" rel="noopener"><span class="link-icon">🔗</span><span class="link-name">校務相關平台</span></a><a class="link-chip" href="https://www.clearnotebooks.com/zh-TW/notebooks/grade/senior-high" target="_blank" rel="noopener"><span class="link-icon">🔗</span><span class="link-name">筆記共享</span></a><a class="link-chip" href="https://thetawave.ai/zh-tw" target="_blank" rel="noopener"><span class="link-icon">🔗</span><span class="link-name">AI 筆記生成器</span></a></div>
+    </section>
+
     <!-- 班級生活與榮譽 -->
     <section class="card">
       <h3>🏫 班級生活與榮譽</h3>
@@ -649,26 +672,19 @@
 
       <div class="tab-panel active" id="tab-cadre">
         <!-- DATA_CADRE_START -->
-        <div class="cadre-grid" id="cadre-grid">
-          <div class="cadre-item"><div class="cadre-avatar">班</div><div class="cadre-role">班長</div><div class="cadre-name">尚未產生</div></div>
-          <div class="cadre-item"><div class="cadre-avatar">副</div><div class="cadre-role">副班長</div><div class="cadre-name">尚未產生</div></div>
-        </div>
+        <div class="cadre-grid" id="cadre-grid"><div class="cadre-item"><div class="cadre-avatar">－</div><div class="cadre-role">尚未設定</div><div class="cadre-name">尚未產生</div></div></div>
         <!-- DATA_CADRE_END -->
       </div>
 
       <div class="tab-panel" id="tab-honor">
         <!-- DATA_HONOR_START -->
-        <ul id="honor-list">
-          <li><span class="item-date">2026/07/03</span><span class="item-text">尚無榮譽紀錄，請於維護模式新增班級或個人榮譽事蹟。</span></li>
-        </ul>
+        <ul id="honor-list"><li><span class="item-text">尚無榮譽紀錄，請於維護模式新增班級或個人榮譽事蹟。</span></li></ul>
         <!-- DATA_HONOR_END -->
       </div>
 
       <div class="tab-panel" id="tab-photos">
         <!-- DATA_PHOTOS_START -->
-        <div class="photo-grid" id="photo-grid">
-          <figure><img src="https://placehold.co/200x150/002D62/ffffff?text=一中" alt="校園示意圖"><figcaption>校園一隅</figcaption></figure>
-        </div>
+        <div class="photo-grid" id="photo-grid"><p style="font-size:0.85rem;color:var(--color-text-soft);">尚無相片，請於維護模式新增。</p></div>
         <!-- DATA_PHOTOS_END -->
       </div>
     </section>
@@ -682,7 +698,7 @@
       </div>
 
       <div class="tab-panel active" id="tab2-vote">
-        <ul id="vote-announce-list"></ul>
+        <ul id="vote-announce-list"><li><span class="item-text">目前沒有排定的投票議題。</span></li></ul>
       </div>
 
       <div class="tab-panel" id="tab2-board">
@@ -698,14 +714,14 @@
 
     <section class="card">
       <h3>📅 近期大考時程表</h3>
-      <ul id="exam-table-list"></ul>
+      <ul id="exam-table-list"><li><span>第一次段考<br><small style="color:var(--color-text-soft);">2026-10-13</small></span><span class="exam-days-pill ">倒數 36 天</span></li><li><span>第二次段考<br><small style="color:var(--color-text-soft);">2026-12-01</small></span><span class="exam-days-pill ">倒數 85 天</span></li></ul>
     </section>
 
     <section class="card">
       <h3>🗓️ 課表</h3>
       <!-- DATA_SCHEDULE_START -->
       <div id="schedule-image-block">
-        <p class="schedule-placeholder" id="schedule-placeholder">尚未上傳課表圖片，請於維護模式中設定圖片網址。</p>
+        <p class="schedule-placeholder" id="schedule-placeholder" style="display: block;">尚未上傳課表圖片，請於維護模式中設定圖片網址。</p>
         <img id="schedule-image" class="schedule-image" src="" alt="班級課表" style="display:none;">
       </div>
       <!-- DATA_SCHEDULE_END -->
@@ -713,7 +729,7 @@
 
     <section class="card birthday-card">
       <h3>🎂 當月壽星</h3>
-      <div id="birthday-content"></div>
+      <div id="birthday-content"><p class="birthday-empty">9 月尚無登錄壽星資料 🎈</p></div>
     </section>
 
   </div>
@@ -722,7 +738,7 @@
 
 <!-- =============== FOOTER =============== -->
 <footer class="site-footer">
-  <p>© 2026 臺中市立臺中第一高級中等學校 <span id="footer-class-text">115學年度 高一 尚未分班</span>．版權所有</p>
+  <p>© 2026 臺中市立臺中第一高級中等學校 <span id="footer-class-text">115學年度 高一 14班</span>．版權所有</p>
 </footer>
 <button type="button" class="maintenance-btn" onclick="enterMaintenanceMode()" title="進入維護模式">🔧</button>
 
@@ -735,21 +751,14 @@
   <div class="fullpage-body">
     <input type="text" id="announcement-search" class="announcement-search-input" placeholder="🔍 輸入關鍵字搜尋公告…" oninput="filterAnnouncementFullList()">
     <!-- DATA_ANNOUNCEMENT_START -->
-    <ul id="announcement-full-list">
-      <li><span class="tag-new">NEW</span><span class="item-date">2026/07/03</span><span class="item-text">班級網頁正式上線，歡迎各位同學使用維護模式更新資料。</span></li>
-      <li><span class="tag-new">NEW</span><span class="item-date">2026/07/01</span><span class="item-text">暑期輔導課程表將於分班後另行公告，請留意班級群組通知。</span></li>
-      <li><span class="item-date">2026/06/28</span><span class="item-text">請同學於暑假期間留意學校官網公告，確認分班結果。</span></li>
-      <li><span class="item-date">2026/06/20</span><span class="item-text">畢業典禮圓滿結束，感謝所有師長與家長的參與。</span></li>
-      <li><span class="item-date">2026/06/15</span><span class="item-text">期末考成績將於下週公布，請至教務處系統查詢。</span></li>
-      <li><span class="item-date">2026/06/10</span><span class="item-text">暑期輔導課選課系統開放中，請儘早完成選課。</span></li>
-    </ul>
+    <ul id="announcement-full-list"><li><span class="item-text">目前尚無公告。</span></li></ul>
     <!-- DATA_ANNOUNCEMENT_END -->
     <p id="announcement-no-result" style="display:none; text-align:center; color:var(--color-text-soft); padding:20px;">沒有符合關鍵字的公告。</p>
   </div>
 </div>
 
 <!-- =============== ADMIN PANEL =============== -->
-<div id="admin-panel">
+<div id="admin-panel" style="display: none;">
   <div class="admin-shell">
     <h2>後台管理面板 <span class="version-tag">🛠️ v2.0</span></h2>
 
@@ -795,6 +804,36 @@
         </div>
       </div>
 
+      <!-- 常用連結管理 -->
+      <div class="admin-block">
+        <h4>🔗 常用連結管理</h4>
+        <label for="admin-link-icon">圖示（貼一個emoji，可留空）</label>
+        <input type="text" id="admin-link-icon" placeholder="例如：📘">
+        <label for="admin-link-name">連結名稱</label>
+        <input type="text" id="admin-link-name" placeholder="例如：學校首頁 / 學生資訊系統">
+        <label for="admin-link-url">連結網址</label>
+        <input type="text" id="admin-link-url" placeholder="https://...">
+        <div class="admin-actions">
+          <button type="button" class="btn-primary" onclick="addLink()">新增連結</button>
+        </div>
+        <ul class="admin-mini-list" id="admin-link-mini-list"><li><span>🔗 校務相關平台</span><button type="button" class="del-btn" onclick="deleteLink(0)">❌ 刪除</button></li><li><span>🔗 筆記共享</span><button type="button" class="del-btn" onclick="deleteLink(1)">❌ 刪除</button></li><li><span>🔗 AI 筆記生成器</span><button type="button" class="del-btn" onclick="deleteLink(2)">❌ 刪除</button></li></ul>
+      </div>
+
+      <!-- 壽星管理 -->
+      <div class="admin-block">
+        <h4>🎂 壽星管理</h4>
+        <label for="admin-bd-name">姓名</label>
+        <input type="text" id="admin-bd-name" placeholder="例如：王小明">
+        <label for="admin-bd-month">生日月份（1-12）</label>
+        <input type="number" id="admin-bd-month" min="1" max="12" placeholder="例如：9">
+        <label for="admin-bd-day">生日日期（1-31）</label>
+        <input type="number" id="admin-bd-day" min="1" max="31" placeholder="例如：7">
+        <div class="admin-actions">
+          <button type="button" class="btn-primary" onclick="addBirthday()">新增壽星</button>
+        </div>
+        <ul class="admin-mini-list" id="admin-bd-mini-list"><li><span>尚無資料</span></li></ul>
+      </div>
+
       <!-- 大考管理 -->
       <div class="admin-block">
         <h4>📚 大考管理</h4>
@@ -805,7 +844,7 @@
         <div class="admin-actions">
           <button type="button" class="btn-primary" onclick="addExam()">新增大考</button>
         </div>
-        <ul class="admin-mini-list" id="admin-exam-mini-list"></ul>
+        <ul class="admin-mini-list" id="admin-exam-mini-list"><li><span>第一次段考（2026-10-13）</span><button type="button" class="del-btn" onclick="deleteExam(0)">❌ 刪除</button></li><li><span>第二次段考（2026-12-01）</span><button type="button" class="del-btn" onclick="deleteExam(1)">❌ 刪除</button></li></ul>
       </div>
 
       <!-- 最新公告管理 -->
@@ -816,7 +855,7 @@
         <div class="admin-actions">
           <button type="button" class="btn-primary" onclick="addAnnouncement()">新增公告</button>
         </div>
-        <ul class="admin-mini-list" id="admin-announcement-mini-list"></ul>
+        <ul class="admin-mini-list" id="admin-announcement-mini-list"><li><span>尚無資料</span></li></ul>
       </div>
 
       <!-- 榮譽榜管理 -->
@@ -827,7 +866,7 @@
         <div class="admin-actions">
           <button type="button" class="btn-primary" onclick="addHonor()">新增榮譽</button>
         </div>
-        <ul class="admin-mini-list" id="admin-honor-mini-list"></ul>
+        <ul class="admin-mini-list" id="admin-honor-mini-list"><li><span>尚無資料</span></li></ul>
       </div>
 
       <!-- 相簿管理 -->
@@ -840,7 +879,7 @@
         <div class="admin-actions">
           <button type="button" class="btn-primary" onclick="addPhoto()">新增照片</button>
         </div>
-        <ul class="admin-mini-list" id="admin-photo-mini-list"></ul>
+        <ul class="admin-mini-list" id="admin-photo-mini-list"><li><span>尚無資料</span></li></ul>
       </div>
 
       <!-- 幹部管理 -->
@@ -853,7 +892,7 @@
         <div class="admin-actions">
           <button type="button" class="btn-primary" onclick="addCadre()">新增幹部</button>
         </div>
-        <ul class="admin-mini-list" id="admin-cadre-mini-list"></ul>
+        <ul class="admin-mini-list" id="admin-cadre-mini-list"><li><span>尚無資料</span></li></ul>
       </div>
 
       <!-- 班會投票公告管理 -->
@@ -864,7 +903,7 @@
         <div class="admin-actions">
           <button type="button" class="btn-primary" onclick="addVoteAnnounce()">新增投票公告</button>
         </div>
-        <ul class="admin-mini-list" id="admin-vote-mini-list"></ul>
+        <ul class="admin-mini-list" id="admin-vote-mini-list"><li><span>尚無資料</span></li></ul>
       </div>
 
     </div>
@@ -875,7 +914,7 @@
         <button type="button" class="btn-primary" onclick="document.getElementById('admin-panel').style.display='none'">收合面板</button>
       </div>
       <p class="export-hint">產生後將自動全選，複製後另存為 index.html 即可完成永久更新（本機端不會保留紀錄，請務必下載保存）。</p>
-      <textarea id="code-output" readonly></textarea>
+      <textarea id="code-output" readonly=""></textarea>
     </div>
 
   </div>
@@ -887,9 +926,14 @@
    ========================================================= */
 // DATA_EXAMS_START
 let EXAMS_ARRAY = [
-  { name: "暑期輔導總複習測驗", date: "2026-08-14" },
-  { name: "115學年度第一次段考", date: "2026-09-25" },
-  { name: "115學年度期中考", date: "2026-11-06" }
+  {
+    "name": "第一次段考",
+    "date": "2026-10-13"
+  },
+  {
+    "name": "第二次段考",
+    "date": "2026-12-01"
+  }
 ];
 // DATA_EXAMS_END
 
@@ -904,10 +948,10 @@ let homeworkLinkURL = '';
 let cadreData = [];
 let honorData = [];
 let photoData = [];
+let linkData = [];
+let birthdayData = [];
 
-let voteAnnounceData = [
-  { date: "2026/07/10", text: "即將舉行投票：本學期班遊地點（谷關溫泉／彩虹眷村／高美濕地）" }
-];
+let voteAnnounceData = [];
 let messageLinkURL = '';
 let scheduleImageURL = '';
 const ADMIN_PASSWORD = "115tcfsh";
@@ -951,6 +995,27 @@ function initFromDOM(){
       url: fig.querySelector('img').getAttribute('src'),
       caption: fig.querySelector('figcaption').textContent
     });
+  });
+  document.querySelectorAll('#links-grid .link-chip').forEach(a=>{
+    linkData.push({
+      icon: a.querySelector('.link-icon') ? a.querySelector('.link-icon').textContent : '🔗',
+      name: a.querySelector('.link-name') ? a.querySelector('.link-name').textContent : a.textContent,
+      url: a.getAttribute('href')
+    });
+  });
+  document.querySelectorAll('#vote-announce-list li').forEach(li=>{
+    const dateEl = li.querySelector('.item-date');
+    const textEl = li.querySelector('.item-text');
+    if(textEl && !textEl.textContent.includes('目前沒有排定的投票議題')){
+      voteAnnounceData.push({ date: dateEl ? dateEl.textContent : '', text: textEl.textContent });
+    }
+  });
+  document.querySelectorAll('#birthday-content .birthday-item').forEach(item=>{
+    const txt = item.querySelector('span:last-child') ? item.querySelector('span:last-child').textContent : '';
+    const match = txt.match(/^(.+?)（(\d+)\/(\d+)）$/);
+    if(match){
+      birthdayData.push({ name: match[1], month: parseInt(match[2],10), day: parseInt(match[3],10) });
+    }
   });
 }
 
@@ -1053,6 +1118,17 @@ function renderPhotos(){
   }
   grid.innerHTML = photoData.map(p =>
     `<figure><img src="${escapeAttr(p.url)}" alt="${escapeAttr(p.caption)}"><figcaption>${escapeHTML(p.caption)}</figcaption></figure>`
+  ).join('');
+}
+
+function renderLinks(){
+  const grid = document.getElementById('links-grid');
+  if(linkData.length === 0){
+    grid.innerHTML = `<p style="font-size:0.85rem;color:var(--color-text-soft);">尚未設定常用連結，請於維護模式新增（例如學校首頁、學生資訊系統、選課系統等）。</p>`;
+    return;
+  }
+  grid.innerHTML = linkData.map(l =>
+    `<a class="link-chip" href="${escapeAttr(l.url)}" target="_blank" rel="noopener"><span class="link-icon">${escapeHTML(l.icon || '🔗')}</span><span class="link-name">${escapeHTML(l.name)}</span></a>`
   ).join('');
 }
 
@@ -1167,15 +1243,12 @@ function renderScheduleImage(){
 }
 
 /* =========================================================
-   當月壽星（示範用，靜態資料，非管理面板管理範疇）
+   當月壽星
    ========================================================= */
-const STUDENTS_BIRTHDAY = [
-  // { name: "王小明", month: 7, day: 15 }
-];
 function renderBirthdays(){
   const wrap = document.getElementById('birthday-content');
   const thisMonth = new Date().getMonth() + 1;
-  const list = STUDENTS_BIRTHDAY.filter(s => s.month === thisMonth);
+  const list = birthdayData.filter(s => s.month === thisMonth);
   if(list.length === 0){
     wrap.innerHTML = `<p class="birthday-empty">${thisMonth} 月尚無登錄壽星資料 🎈</p>`;
     return;
@@ -1330,6 +1403,50 @@ function deletePhoto(index){
 }
 
 /* =========================================================
+   後台：常用連結管理
+   ========================================================= */
+function addLink(){
+  const icon = document.getElementById('admin-link-icon').value.trim() || '🔗';
+  const name = document.getElementById('admin-link-name').value.trim();
+  const url = document.getElementById('admin-link-url').value.trim();
+  if(!name || !url){ alert('請輸入連結名稱與網址'); return; }
+  if(!/^https?:\/\//i.test(url)){ alert('請輸入完整網址（需以 http:// 或 https:// 開頭）'); return; }
+  linkData.push({icon, name, url});
+  document.getElementById('admin-link-icon').value = '';
+  document.getElementById('admin-link-name').value = '';
+  document.getElementById('admin-link-url').value = '';
+  renderLinks();
+  refreshAdminMiniLists();
+}
+function deleteLink(index){
+  linkData.splice(index, 1);
+  renderLinks();
+  refreshAdminMiniLists();
+}
+
+/* =========================================================
+   後台：壽星管理
+   ========================================================= */
+function addBirthday(){
+  const name = document.getElementById('admin-bd-name').value.trim();
+  const month = parseInt(document.getElementById('admin-bd-month').value, 10);
+  const day = parseInt(document.getElementById('admin-bd-day').value, 10);
+  if(!name || !month || !day){ alert('請完整輸入姓名、月份與日期'); return; }
+  if(month < 1 || month > 12 || day < 1 || day > 31){ alert('月份或日期超出範圍'); return; }
+  birthdayData.push({name, month, day});
+  document.getElementById('admin-bd-name').value = '';
+  document.getElementById('admin-bd-month').value = '';
+  document.getElementById('admin-bd-day').value = '';
+  renderBirthdays();
+  refreshAdminMiniLists();
+}
+function deleteBirthday(index){
+  birthdayData.splice(index, 1);
+  renderBirthdays();
+  refreshAdminMiniLists();
+}
+
+/* =========================================================
    後台：幹部管理
    ========================================================= */
 function addCadre(){
@@ -1388,6 +1505,14 @@ function refreshAdminMiniLists(){
     `<li><span>${escapeHTML(p.caption)}</span><button type="button" class="del-btn" onclick="deletePhoto(${i})">❌ 刪除</button></li>`
   ).join('') || '<li><span>尚無資料</span></li>';
 
+  document.getElementById('admin-link-mini-list').innerHTML = linkData.map((l,i) =>
+    `<li><span>${escapeHTML(l.icon || '🔗')} ${escapeHTML(l.name)}</span><button type="button" class="del-btn" onclick="deleteLink(${i})">❌ 刪除</button></li>`
+  ).join('') || '<li><span>尚無資料</span></li>';
+
+  document.getElementById('admin-bd-mini-list').innerHTML = birthdayData.map((b,i) =>
+    `<li><span>${escapeHTML(b.name)}（${b.month}/${b.day}）</span><button type="button" class="del-btn" onclick="deleteBirthday(${i})">❌ 刪除</button></li>`
+  ).join('') || '<li><span>尚無資料</span></li>';
+
   document.getElementById('admin-cadre-mini-list').innerHTML = cadreData.map((c,i) =>
     `<li><span>${escapeHTML(c.role)} - ${escapeHTML(c.name)}</span><button type="button" class="del-btn" onclick="deleteCadre(${i})">❌ 刪除</button></li>`
   ).join('') || '<li><span>尚無資料</span></li>';
@@ -1443,11 +1568,12 @@ renderHomeworkLink();
 renderCadre();
 renderHonor();
 renderPhotos();
+renderLinks();
 renderExams();
 renderVoteAnnounce();
 renderMessageLink();
 renderScheduleImage();
 renderBirthdays();
 </script>
-</body>
-</html>
+
+</body></html>
